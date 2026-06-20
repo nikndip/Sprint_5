@@ -24,7 +24,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	}
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return err
+		return fmt.Errorf("invalid steps format: %w", err)
 	}
 	if steps <= 0 {
 		return errors.New("steps must be a positive integer")
@@ -32,7 +32,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 
 	duration, err := time.ParseDuration(parts[1])
 	if err != nil {
-		return err
+		return fmt.Errorf("invalid duration format: %w", err)
 	}
 	if duration <= 0 {
 		return errors.New("duration must be a positive value")
